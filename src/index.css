@@ -8,3 +8,11 @@
   font-size: 16px;
   font-family: "Rubik", sans-serif;
 }
+body {
+  background-color: #f5f6fa;
+}
+
+/* Hover for add/remove score for comment */
+.button-hover:hover .icon path {
+  fill: #5358b6;
+}
