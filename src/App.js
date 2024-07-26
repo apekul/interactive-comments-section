@@ -1,29 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 
 // Components
 import SingleComment from "./Components/SingleComment/SingleComment";
 
-// Provided data
-import data from "./data.json";
+// Task: https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(data.currentUser);
-  const [comments, setComments] = useState(data.comments);
-
+  const { comments, currentUser } = useContext(AppContext);
   return (
     <main className="bg-[#F5F6FA] min-h-screen flex items-center justify-center">
       {/* comments list */}
       <section className="w-[45rem] h-auto">
-        <ul>
+        <ul className="flex flex-col gap-5">
           {comments.map((comment, index) => (
-            <li className="flex flex-col">
+            <li className="flex flex-col gap-5" key={index}>
               {/* Single Comment */}
               <SingleComment key={index} comment={comment} />
               {/* Replies Section */}
               {!!comment.replies.length && (
-                <div className="flex items-start">
-                  <div className="w-2 bg-red-200"></div>
-                  <div className="flex-1 pl-4">
+                <div className="flex border-l-2 pl-9 ml-9">
+                  <div className="flex-1 flex flex-col gap-5">
                     {comment.replies.map((reply, replyIndex) => (
                       <SingleComment key={replyIndex} comment={reply} />
                     ))}
@@ -34,7 +31,7 @@ function App() {
           ))}
         </ul>
         {/* Input comment */}
-        <form className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm">
+        <form className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm mt-5">
           <img
             src={currentUser.image.png}
             alt={`${currentUser.username}_image`}

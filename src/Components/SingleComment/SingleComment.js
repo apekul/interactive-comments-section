@@ -2,7 +2,7 @@ import React from "react";
 
 const SingleComment = ({ comment }) => {
   return (
-    <article className="flex gap-5 bg-white p-5 mb-5 rounded-md shadow-sm">
+    <article className="flex gap-5 bg-white p-5  rounded-md shadow-sm">
       <div className="bg-[#F5F6FA] w-10 self-start rounded-md items-center flex flex-col gap-1">
         <button className="cursor-pointer p-2">
           <img src="./images/icon-plus.svg" alt="icon_plus" />
