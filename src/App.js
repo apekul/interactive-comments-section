@@ -13,10 +13,24 @@ function App() {
   return (
     <main className="bg-[#F5F6FA] min-h-screen flex items-center justify-center">
       {/* comments list */}
-      <section className="w-[40rem] h-[30rem]">
+      <section className="w-[45rem] h-auto">
         <ul>
           {comments.map((comment, index) => (
-            <SingleComment key={index} comment={comment} />
+            <li className="flex flex-col">
+              {/* Single Comment */}
+              <SingleComment key={index} comment={comment} />
+              {/* Replies Section */}
+              {!!comment.replies.length && (
+                <div className="flex items-start">
+                  <div className="w-2 bg-red-200"></div>
+                  <div className="flex-1 pl-4">
+                    {comment.replies.map((reply, replyIndex) => (
+                      <SingleComment key={replyIndex} comment={reply} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </li>
           ))}
         </ul>
         {/* Input comment */}
