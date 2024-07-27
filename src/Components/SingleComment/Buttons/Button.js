@@ -1,30 +1,54 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../../AppContext";
 
-const Button = ({ setReply, reply, remove, update, color }) => {
+const Button = ({ ...props }) => {
+  const { currentUser, setComments } = useContext(AppContext);
+
+  const handleEdit = () => {
+    props.setEdit((prev) => !prev);
+  };
+  const handleReply = () => {
+    props.setReply((prev) => !prev);
+  };
+  const handleRemove = () => {
+    console.log("remove " + props.id);
+  };
   return (
-    <button
-      className="flex gap-2 items-center text-[#5358B6]"
-      onClick={() => setReply((prev) => !prev)}
-    >
-      {reply && (
-        <>
-          <img src="./images/icon-reply.svg" alt="icon_reply" />
-          <strong>Reply</strong>
-        </>
+    <>
+      {props.reply && (
+        <button
+          className="flex gap-2 items-center text-[#5358B6]"
+          onClick={handleReply}
+        >
+          <>
+            <img src="./images/icon-reply.svg" alt="icon_reply" />
+            <strong>Reply</strong>
+          </>
+        </button>
       )}
-      {remove && (
-        <>
-          <img src="./images/icon-delete.svg" alt="icon_delete" />
-          <strong className="text-[#ED6468]">Delete</strong>
-        </>
+      {props.remove && (
+        <button
+          className="flex gap-2 items-center text-[#5358B6]"
+          onClick={handleRemove}
+        >
+          <>
+            <img src="./images/icon-delete.svg" alt="icon_delete" />
+            <strong className="text-[#ED6468]">Delete</strong>
+          </>
+        </button>
       )}
-      {update && (
-        <>
-          <img src="./images/icon-edit.svg" alt="icon_edit" />
-          <strong>Edit</strong>
-        </>
+      {props.edit && (
+        <button
+          className="flex gap-2 items-center text-[#5358B6]"
+          onClick={handleEdit}
+        >
+          <>
+            <img src="./images/icon-edit.svg" alt="icon_edit" />
+            <strong>Edit</strong>
+          </>
+        </button>
       )}
-    </button>
+    </>
   );
 };
 

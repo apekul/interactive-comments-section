@@ -5,10 +5,12 @@ import { AppContext } from "../../AppContext";
 import ScoreButtons from "./Buttons/ScoreButtons";
 import Button from "./Buttons/Button";
 import CreateComment from "../CreateComment";
+import EditComment from "./EditComment";
 
 const SingleComment = ({ comment }) => {
   const { currentUser } = useContext(AppContext);
   const [reply, setReply] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="flex flex-col w-full gap-2 ">
@@ -37,23 +39,30 @@ const SingleComment = ({ comment }) => {
             <div className="flex gap-5">
               {comment.user.username === currentUser.username ? (
                 <>
-                  <Button setReply={setReply} remove color="#ED6468" />
-                  <Button setReply={setReply} update />
+                  <Button id={comment.id} remove color="#ED6468" />
+                  <Button setEdit={setEdit} edit />
                 </>
               ) : (
                 <Button setReply={setReply} reply />
               )}
             </div>
           </header>
-          <p className="pr-5" style={{ color: "hsl(211, 10%, 45%)" }}>
-            {comment.replyingTo && (
-              <strong className="text-[#5358B6]">@{comment.replyingTo} </strong>
+          <div className="pr-5" style={{ color: "hsl(211, 10%, 45%)" }}>
+            {!edit ? (
+              <p>
+                {comment.replyingTo && (
+                  <strong className="text-[#5358B6]">
+                    @{comment.replyingTo}{" "}
+                  </strong>
+                )}
+                {comment.content}
+              </p>
+            ) : (
+              <EditComment comment={comment} setEdit={setEdit} />
             )}
-            {comment.content}
-          </p>
+          </div>
         </div>
       </article>
-
       {reply && <CreateComment reply />}
     </div>
   );

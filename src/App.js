@@ -8,12 +8,12 @@ import CreateComment from "./Components/CreateComment";
 // Task: https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9
 
 function App() {
-  const { comments, currentUser } = useContext(AppContext);
+  const { comments } = useContext(AppContext);
   return (
-    <main className="bg-[#F5F6FA] min-h-screen flex items-start justify-center">
+    <main className="bg-[#F5F6FA] min-h-screen flex justify-center">
       {/* comments list */}
-      <section className="w-[45rem] my-20">
-        <ul className="">
+      <section className="w-[45rem] my-10 flex flex-col self-center">
+        <ul>
           {comments.map((comment, index) => (
             <li className="mb-5" key={index}>
               {/* Single Comment */}
