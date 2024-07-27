@@ -7,7 +7,7 @@ import Button from "./Buttons/Button";
 import CreateComment from "../CreateComment";
 import EditComment from "./EditComment";
 
-const SingleComment = ({ comment }) => {
+const SingleComment = ({ comment, parentId }) => {
   const { currentUser } = useContext(AppContext);
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -43,7 +43,7 @@ const SingleComment = ({ comment }) => {
                   <Button setEdit={setEdit} edit />
                 </>
               ) : (
-                <Button setReply={setReply} reply />
+                <Button id={comment.id} setReply={setReply} reply />
               )}
             </div>
           </header>
@@ -63,7 +63,14 @@ const SingleComment = ({ comment }) => {
           </div>
         </div>
       </article>
-      {reply && <CreateComment reply />}
+      {reply && (
+        <CreateComment
+          reply
+          setReply={setReply}
+          parentId={parentId !== undefined ? parentId : comment.id}
+          replyingTo={comment.user.username}
+        />
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../AppContext";
 
 const Button = ({ ...props }) => {
-  const { currentUser, setComments } = useContext(AppContext);
+  const { removeItem } = useContext(AppContext);
 
   const handleEdit = () => {
     props.setEdit((prev) => !prev);
@@ -11,7 +11,7 @@ const Button = ({ ...props }) => {
     props.setReply((prev) => !prev);
   };
   const handleRemove = () => {
-    console.log("remove " + props.id);
+    removeItem(props.id);
   };
   return (
     <>

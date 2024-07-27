@@ -23,7 +23,11 @@ function App() {
                 <div className="border-l-2 pl-9 ml-9 mt-5">
                   <div className="flex-1 flex flex-col gap-5">
                     {comment.replies.map((reply, replyIndex) => (
-                      <SingleComment key={replyIndex} comment={reply} />
+                      <SingleComment
+                        parentId={comment.id}
+                        key={replyIndex}
+                        comment={reply}
+                      />
                     ))}
                   </div>
                 </div>

@@ -1,14 +1,45 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 
-const CreateComment = ({ reply, edit }) => {
-  const { currentUser } = useContext(AppContext);
+const CreateComment = ({
+  parentId = null,
+  reply,
+  setReply,
+  edit,
+  replyingTo,
+}) => {
+  const { currentUser, addCommentOrReply } = useContext(AppContext);
   const textareaRef = useRef(null);
   const [text, setText] = useState("");
 
   const onChange = (event) => {
     const { value } = event.target;
     setText(value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (text.trim() === "") return;
+
+    // Create a new comment object
+    const newComment = {
+      id: Date.now(), // Use a unique ID for the new comment/reply
+      content: text,
+      createdAt: "Just now", // Placeholder timestamp
+      score: 0,
+      replyingTo,
+      user: currentUser,
+      replies: [], // Replies are empty initially
+    };
+
+    // Call the context function to add the comment or reply
+    addCommentOrReply(parentId, newComment);
+
+    setText(""); // Clear the textarea after submission
+
+    // Close the reply form if it's open
+    if (setReply) setReply(false);
   };
 
   useEffect(() => {
@@ -20,16 +51,11 @@ const CreateComment = ({ reply, edit }) => {
     }
   }, [text]);
 
-  // Run the effect initially to adjust height based on initial text
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
-  }, []);
-
   return (
-    <form className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm"
+    >
       <img
         src={currentUser.image.png}
         alt={`${currentUser.username}_image`}
@@ -42,10 +68,17 @@ const CreateComment = ({ reply, edit }) => {
         placeholder="Add a comment..."
         className="border-2 rounded-md px-5 py-2 w-full h-full resize-none overflow-hidden"
       />
-      <button className="bg-[#5358B6] text-white px-5 py-2 rounded-md">
+      <button
+        type="submit"
+        className="bg-[#5358B6] text-white px-5 py-2 rounded-md"
+      >
         {reply ? "REPLY" : "SEND"}
-        {edit && "UPDATE"}
       </button>
+      {edit && (
+        <button className="bg-[#5358B6] text-white px-5 py-2 rounded-md">
+          UPDATE
+        </button>
+      )}
     </form>
   );
 };

@@ -5,7 +5,7 @@ const EditComment = ({ comment, setEdit }) => {
   const { setComments } = useContext(AppContext);
 
   const textareaRef = useRef(null);
-  const readonlyPrefix = `@${comment.replyingTo} `;
+  const readonlyPrefix = comment.replyingTo ? `@${comment.replyingTo} ` : "";
   const [text, setText] = useState(readonlyPrefix + comment.content);
 
   const onChangeText = (event) => {
