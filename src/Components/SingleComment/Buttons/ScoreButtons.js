@@ -23,9 +23,9 @@ const ScoreButtons = ({ comment }) => {
     }
   };
   return (
-    <div className="bg-[#F5F6FA] w-10 h-[6rem] self-start rounded-md items-center flex flex-col justify-between select-none">
+    <div className="bg-[#F5F6FA] w-[6rem] gap-2 sm:gap-0 sm:w-10 sm:h-[6rem] self-start rounded-md items-center flex sm:flex-col justify-between select-none">
       <button
-        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full rounded-t-md ${
+        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full rounded-bl-md sm:rounded-bl-none rounded-tl-md sm:rounded-tr-md ${
           userVote === "upvote"
             ? "bg-[#5358B6] buttonLight-hover"
             : "button-hover"
@@ -47,7 +47,7 @@ const ScoreButtons = ({ comment }) => {
       </button>
       <strong style={{ color: "hsl(238, 40%, 52%)" }}>{score}</strong>
       <button
-        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full transition-all duration-150 rounded-b-md ${
+        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full transition-all duration-150 rounded-br-md rounded-tr-md sm:rounded-tr-none sm:rounded-bl-md ${
           userVote === "downvote"
             ? "bg-[#ED6468] buttonLight-hover"
             : "button-hover"

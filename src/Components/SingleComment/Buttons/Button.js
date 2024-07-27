@@ -11,7 +11,8 @@ const Button = ({ ...props }) => {
     props.setReply((prev) => !prev);
   };
   const handleRemove = () => {
-    removeItem(props.id);
+    // removeItem(props.id);
+    props.setDeleteConfirm(true);
   };
   return (
     <>

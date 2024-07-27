@@ -12,7 +12,7 @@ function App() {
   return (
     <main className="bg-[#F5F6FA] h-screen">
       {/* comments list */}
-      <section className="w-[45rem] m-auto py-10">
+      <section className=" w-full sm:w-[45rem] m-auto py-10 px-3">
         <ul>
           {comments.map((comment, index) => (
             <li className="mb-5" key={index}>
@@ -20,7 +20,7 @@ function App() {
               <SingleComment key={index} comment={comment} />
               {/* Replies Section */}
               {!!comment.replies.length && (
-                <div className="border-l-2 pl-9 ml-9 mt-5">
+                <div className="border-l-2 pl-3 sm:pl-9 sm:ml-9 mt-5">
                   <div className="flex-1 flex flex-col gap-5">
                     {comment.replies.map((reply, replyIndex) => (
                       <SingleComment

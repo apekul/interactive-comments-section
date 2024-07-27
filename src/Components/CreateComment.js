@@ -54,12 +54,12 @@ const CreateComment = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm"
+      className="bg-white p-5 flex flex-col sm:flex-row items-start gap-5 rounded-md shadow-sm relative"
     >
       <img
         src={currentUser.image.png}
         alt={`${currentUser.username}_image`}
-        className="w-10 h-10"
+        className="w-10 h-10 absolute sm:static bottom-6"
       />
       <textarea
         ref={textareaRef}
@@ -71,7 +71,7 @@ const CreateComment = ({
       />
       <button
         type="submit"
-        className="bg-[#5358B6] text-white px-5 py-2 rounded-md"
+        className="bg-[#5358B6] text-white px-5 py-2 rounded-md self-end sm:self-start"
       >
         {reply ? "REPLY" : "SEND"}
       </button>
