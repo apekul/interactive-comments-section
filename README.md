@@ -11,8 +11,8 @@ This project is an interactive comments section that closely resembles a provide
 Users should be able to:
 - Create, Read, Update, and Delete comments and replies
 - Upvote and downvote comments
-= View the optimal layout for the app depending on the device's screen size
-= See hover states for all interactive elements on the page
+- View the optimal layout for the app depending on the device's screen size
+- See hover states for all interactive elements on the page
 
 
 ## Demo
