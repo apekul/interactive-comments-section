@@ -10,17 +10,17 @@ import CreateComment from "./Components/CreateComment";
 function App() {
   const { comments, currentUser } = useContext(AppContext);
   return (
-    <main className="bg-[#F5F6FA] min-h-screen flex justify-center my-20 ">
+    <main className="bg-[#F5F6FA] min-h-screen flex items-start justify-center">
       {/* comments list */}
-      <section className="w-[45rem] flex flex-col gap-5">
-        <ul className="flex flex-col gap-5">
+      <section className="w-[45rem] my-20">
+        <ul className="">
           {comments.map((comment, index) => (
-            <li className="flex flex-col gap-5 " key={index}>
+            <li className="mb-5" key={index}>
               {/* Single Comment */}
               <SingleComment key={index} comment={comment} />
               {/* Replies Section */}
               {!!comment.replies.length && (
-                <div className="flex border-l-2 pl-9 ml-9">
+                <div className="border-l-2 pl-9 ml-9 mt-5">
                   <div className="flex-1 flex flex-col gap-5">
                     {comment.replies.map((reply, replyIndex) => (
                       <SingleComment key={replyIndex} comment={reply} />

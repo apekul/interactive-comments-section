@@ -4,7 +4,7 @@ import { AppContext } from "../AppContext";
 const CreateComment = ({ reply, update }) => {
   const { currentUser } = useContext(AppContext);
   return (
-    <form className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm ">
+    <form className="bg-white p-5 flex items-start gap-5 rounded-md shadow-sm">
       <img
         src={currentUser.image.png}
         alt={`${currentUser.username}_image`}
