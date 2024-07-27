@@ -16,3 +16,6 @@ body {
 .button-hover:hover .icon path {
   fill: #5358b6;
 }
+.buttonLight-hover:hover .icon path {
+  fill: white;
+}

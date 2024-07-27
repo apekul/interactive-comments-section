@@ -17,7 +17,7 @@ const Button = ({ ...props }) => {
     <>
       {props.reply && (
         <button
-          className="flex gap-2 items-center text-[#5358B6]"
+          className="flex gap-2 items-center text-[#5358B6] hover:opacity-50"
           onClick={handleReply}
         >
           <>
@@ -28,7 +28,7 @@ const Button = ({ ...props }) => {
       )}
       {props.remove && (
         <button
-          className="flex gap-2 items-center text-[#5358B6]"
+          className="flex gap-2 items-center text-[#5358B6] hover:opacity-50"
           onClick={handleRemove}
         >
           <>
@@ -39,7 +39,7 @@ const Button = ({ ...props }) => {
       )}
       {props.edit && (
         <button
-          className="flex gap-2 items-center text-[#5358B6]"
+          className="flex gap-2 items-center text-[#5358B6] hover:opacity-50"
           onClick={handleEdit}
         >
           <>

@@ -2,21 +2,35 @@ import React, { useState } from "react";
 
 const ScoreButtons = ({ comment }) => {
   const [score, setScore] = useState(comment.score);
-
+  const [userVote, setUserVote] = useState(null);
   // Limit increment/decrement to 1 point
 
-  const incrementScore = () => {
-    setScore((prev) => prev + 1);
-  };
-
-  const decrementScore = () => {
-    setScore((prev) => prev - 1);
+  const handleVote = (voteType) => {
+    if (userVote === voteType) {
+      // If the same vote is clicked again, remove the vote
+      setUserVote(null);
+      setScore((prevScore) =>
+        voteType === "upvote" ? prevScore - 1 : prevScore + 1
+      );
+    } else {
+      // Update vote state and score
+      setUserVote(voteType);
+      setScore((prevScore) =>
+        voteType === "upvote"
+          ? prevScore + (userVote === "downvote" ? 2 : 1)
+          : prevScore - (userVote === "upvote" ? 2 : 1)
+      );
+    }
   };
   return (
     <div className="bg-[#F5F6FA] w-10 h-[6rem] self-start rounded-md items-center flex flex-col justify-between select-none">
       <button
-        className="button-hover cursor-pointer flex items-center justify-center h-[2rem] w-full"
-        onClick={incrementScore}
+        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full rounded-t-md ${
+          userVote === "upvote"
+            ? "bg-[#5358B6] buttonLight-hover"
+            : "button-hover"
+        }`}
+        onClick={() => handleVote("upvote")}
       >
         <svg
           width="11"
@@ -33,8 +47,12 @@ const ScoreButtons = ({ comment }) => {
       </button>
       <strong style={{ color: "hsl(238, 40%, 52%)" }}>{score}</strong>
       <button
-        className="button-hover cursor-pointer flex items-center justify-center h-[2rem] w-full"
-        onClick={decrementScore}
+        className={`cursor-pointer flex items-center justify-center h-[2rem] w-full transition-all duration-150 rounded-b-md ${
+          userVote === "downvote"
+            ? "bg-[#ED6468] buttonLight-hover"
+            : "button-hover"
+        }`}
+        onClick={() => handleVote("downvote")}
       >
         <svg
           width="11"

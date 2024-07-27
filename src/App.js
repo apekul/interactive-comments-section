@@ -10,9 +10,9 @@ import CreateComment from "./Components/CreateComment";
 function App() {
   const { comments } = useContext(AppContext);
   return (
-    <main className="bg-[#F5F6FA] min-h-screen flex justify-center">
+    <main className="bg-[#F5F6FA] h-screen">
       {/* comments list */}
-      <section className="w-[45rem] my-10 flex flex-col self-center">
+      <section className="w-[45rem] m-auto py-10">
         <ul>
           {comments.map((comment, index) => (
             <li className="mb-5" key={index}>

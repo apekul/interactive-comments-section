@@ -60,6 +60,7 @@ const EditComment = ({ comment, setEdit }) => {
         ref={textareaRef}
         value={text}
         onChange={onChangeText}
+        rows={3}
         placeholder="Add a comment..."
         className="border-2 rounded-md px-5 py-2 w-full h-full resize-none overflow-hidden"
       />
