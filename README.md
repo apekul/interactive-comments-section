@@ -1,6 +1,6 @@
 # Interactive comments section
 
-![Design preview for the Interactive comments section coding challenge](./design/img/desktop-preview.jpg)
+![Design preview for the Interactive comments section coding challenge](./design/desktop-preview.jpg)
 
 ## Overview
 
@@ -17,7 +17,7 @@ Users should be able to:
 
 ## Demo
 
-- [Demo URL](https://apekul.github.io/rest-countries-api/)
+- [Demo URL](https://apekul.github.io/interactive-comments-section/)
 
 
 ## Built With
